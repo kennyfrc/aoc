@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # create a function that takes a file
 # first, initialize an array called "elf"
 # second, initialize an integer called "max" with 0
@@ -14,7 +16,7 @@
 #     then skip to the next line
 # print the "max" variable
 
-def get_max_calories(file)
+def max_calories(file)
   elf = []
   max = 0
   File.foreach(file) do |line|
@@ -33,7 +35,7 @@ def get_max_calories(file)
 end
 
 if ARGV.empty?
-  puts "Usage: ruby day01.rb <file>"
+  puts 'Usage: ruby day01.rb <file>'
 else
-  puts get_max_calories(ARGV[0])
+  puts max_calories(ARGV[0])
 end
