@@ -23,12 +23,12 @@ def max_calories(file)
   File.foreach(file) do |line|
     if line != "\n"
       elf << line.to_i
-    elsif line == "\n" && elf != []
+    elsif line == "\n" && !elf.empty?
       elf_max = elf.sum
       global_max = elf_max if elf_max > global_max
       elf = []
       next
-    elsif line == "\n" && elf == []
+    elsif line == "\n" && elf.empty?
       next
     end
   end
