@@ -18,20 +18,20 @@
 
 def max_calories(file)
   elf = []
-  max = 0
+  global_max = 0
   File.foreach(file) do |line|
     if line != "\n"
       elf << line.to_i
     elsif line == "\n" && elf != []
-      temp_max = elf.sum
-      max = temp_max if temp_max > max
+      elf_max = elf.sum
+      global_max = elf_max if elf_max > global_max
       elf = []
       next
     elsif line == "\n" && elf == []
       next
     end
   end
-  max
+  global_max
 end
 
 if ARGV.empty?
