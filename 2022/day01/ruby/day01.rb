@@ -16,6 +16,7 @@
 #     then skip to the next line
 # print the "max" variable
 
+# can be cleaner
 def max_calories(file)
   elf = []
   global_max = 0
@@ -34,8 +35,39 @@ def max_calories(file)
   global_max
 end
 
+# ugly. needs refactoring.
+def total_calories_of_top3(file)
+  elf = []
+  top3elves = []
+  max_lines = File.foreach(file).count
+  lines = 0
+  File.foreach(file) do |line|
+    lines += 1
+    if line != "\n" && lines != max_lines
+      elf << line.to_i
+    elsif (line == "\n" || lines == max_lines)
+      if elf.empty?
+        elf << line.to_i
+      end
+      elf_max = elf.sum
+      if top3elves.size < 3
+        top3elves << elf_max
+      elsif elf_max > top3elves.min
+        top3elves.delete(top3elves.min)
+        top3elves << elf_max
+      end
+      elf = []
+      next
+    else
+      raise "something went wrong on line #{lines}, with input #{line}"
+    end
+  end
+  top3elves.sum
+end
+
 if ARGV.empty?
   puts 'Usage: ruby day01.rb <file>'
 else
-  puts max_calories(ARGV[0])
+  puts "Max calories: #{max_calories(ARGV[0])}"
+  puts "Total calories of top 3: #{total_calories_of_top3(ARGV[0])}"
 end
