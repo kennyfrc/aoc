@@ -25,7 +25,7 @@ def get_max_calories(file)
       max = temp_max if temp_max > max
       elf = []
       next
-    elsif line == nil && elf == []
+    elsif line == "\n" && elf == []
       next
     end
   end
