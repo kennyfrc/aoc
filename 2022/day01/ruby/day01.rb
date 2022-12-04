@@ -45,10 +45,8 @@ def total_calories_of_top3(file)
     lines += 1
     if line != "\n" && lines != max_lines
       elf << line.to_i
-    elsif (line == "\n" || lines == max_lines)
-      if elf.empty?
-        elf << line.to_i
-      end
+    elsif line == "\n" || lines == max_lines
+      elf << line.to_i if elf.empty?
       elf_max = elf.sum
       if top3elves.size < 3
         top3elves << elf_max
