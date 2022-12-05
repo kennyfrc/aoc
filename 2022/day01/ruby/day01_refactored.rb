@@ -67,8 +67,6 @@ module MaxCaloriesv2
       return elves[0].sum if flag == 1
     end
   end
-
-
 end
 
 if ARGV.empty?
@@ -76,5 +74,5 @@ if ARGV.empty?
 else
   file = ARGV[0]
   flag = (ARGV[1] || 1).to_i # default to 1
-  p MaxCaloriesv2::max_calories(file, flag)
+  p MaxCaloriesv2.max_calories(file, flag)
 end
