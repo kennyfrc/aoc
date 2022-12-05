@@ -17,7 +17,7 @@
 # print the "max" variable
 
 # can be cleaner
-module MaxCaloriesv1
+module Day01v1
   class << self
     def max_calories(file)
       elf = []
@@ -70,6 +70,6 @@ end
 if ARGV.empty?
   puts 'Usage: ruby day01.rb <file>'
 else
-  puts "Max calories: #{MaxCaloriesv1.max_calories(ARGV[0])}"
-  puts "Total calories of top 3: #{MaxCaloriesv1.total_calories_of_top3(ARGV[0])}"
+  puts "Max calories: #{Day01v1.max_calories(ARGV[0])}"
+  puts "Total calories of top 3: #{Day01v1.total_calories_of_top3(ARGV[0])}"
 end

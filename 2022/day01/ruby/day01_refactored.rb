@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module MaxCaloriesv2
+module Day01v2
   class Elf
     attr_reader :food
 
@@ -74,5 +74,5 @@ if ARGV.empty?
 else
   file = ARGV[0]
   flag = (ARGV[1] || 1).to_i # default to 1
-  p MaxCaloriesv2.max_calories(file, flag)
+  p Day01v2.max_calories(file, flag)
 end
