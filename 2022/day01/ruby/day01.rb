@@ -17,55 +17,59 @@
 # print the "max" variable
 
 # can be cleaner
-def max_calories(file)
-  elf = []
-  global_max = 0
-  File.foreach(file) do |line|
-    if line != "\n"
-      elf << line.to_i
-    elsif line == "\n" && !elf.empty?
-      elf_max = elf.sum
-      global_max = elf_max if elf_max > global_max
+module MaxCaloriesv1
+  class << self
+    def max_calories(file)
       elf = []
-      next
-    elsif line == "\n" && elf.empty?
-      next
-    end
-  end
-  global_max
-end
-
-# ugly. needs refactoring.
-def total_calories_of_top3(file)
-  elf = []
-  top3elves = []
-  max_lines = File.foreach(file).count
-  lines = 0
-  File.foreach(file) do |line|
-    lines += 1
-    if line != "\n" && lines != max_lines
-      elf << line.to_i
-    elsif line == "\n" || lines == max_lines
-      elf << line.to_i if elf.empty?
-      elf_max = elf.sum
-      if top3elves.size < 3
-        top3elves << elf_max
-      elsif elf_max > top3elves.min
-        top3elves.delete(top3elves.min)
-        top3elves << elf_max
+      global_max = 0
+      File.foreach(file) do |line|
+        if line != "\n"
+          elf << line.to_i
+        elsif line == "\n" && !elf.empty?
+          elf_max = elf.sum
+          global_max = elf_max if elf_max > global_max
+          elf = []
+          next
+        elsif line == "\n" && elf.empty?
+          next
+        end
       end
+      global_max
+    end
+
+    # ugly. needs refactoring.
+    def total_calories_of_top3(file)
       elf = []
-      next
-    else
-      raise "something went wrong on line #{lines}, with input #{line}"
+      top3elves = []
+      max_lines = File.foreach(file).count
+      lines = 0
+      File.foreach(file) do |line|
+        lines += 1
+        if line != "\n" && lines != max_lines
+          elf << line.to_i
+        elsif line == "\n" || lines == max_lines
+          elf << line.to_i if elf.empty?
+          elf_max = elf.sum
+          if top3elves.size < 3
+            top3elves << elf_max
+          elsif elf_max > top3elves.min
+            top3elves.delete(top3elves.min)
+            top3elves << elf_max
+          end
+          elf = []
+          next
+        else
+          raise "something went wrong on line #{lines}, with input #{line}"
+        end
+      end
+      top3elves.sum
     end
   end
-  top3elves.sum
 end
 
 if ARGV.empty?
   puts 'Usage: ruby day01.rb <file>'
 else
-  puts "Max calories: #{max_calories(ARGV[0])}"
-  puts "Total calories of top 3: #{total_calories_of_top3(ARGV[0])}"
+  puts "Max calories: #{MaxCaloriesv1.max_calories(ARGV[0])}"
+  puts "Total calories of top 3: #{MaxCaloriesv1.total_calories_of_top3(ARGV[0])}"
 end
