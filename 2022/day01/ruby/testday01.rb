@@ -2,7 +2,7 @@
 
 require 'minitest/autorun'
 require_relative 'day01'
-require_relative 'day01v2'
+require_relative 'day01_refactored'
 
 # Test for max_calories function
 class TestMaxCalories < Minitest::Test
